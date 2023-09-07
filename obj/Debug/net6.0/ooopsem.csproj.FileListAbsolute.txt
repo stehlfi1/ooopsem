@@ -1,0 +1,17 @@
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\ooopsem.exe
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\ooopsem.deps.json
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\ooopsem.runtimeconfig.json
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\ooopsem.dll
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\ooopsem.pdb
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.AssemblyInfoInputs.cache
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.AssemblyInfo.cs
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.csproj.CoreCompileInputs.cache
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.dll
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\refint\ooopsem.dll
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.pdb
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.genruntimeconfig.cache
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ref\ooopsem.dll
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.csproj.AssemblyReference.cache
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\bin\Debug\net6.0\Pastel.dll
+C:\Users\HP GAMING\Desktop\office\ujep\oonw\ooopsem\obj\Debug\net6.0\ooopsem.csproj.CopyComplete
