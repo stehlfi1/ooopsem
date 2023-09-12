@@ -1,6 +1,6 @@
 
 namespace ooopsem;
-
+/*
 
 public class KochSnowflake : IFractal
 {
@@ -67,3 +67,4 @@ public class SierpinskiTriangle : IFractal
         }
     }
 }
+*/

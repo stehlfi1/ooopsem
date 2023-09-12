@@ -1,20 +1,26 @@
-
+//FracFactory
 namespace ooopsem;
 
 public class FractalFactory
 {
-    public IFractal CreateFractal(string type)
+    public IFractal CreateFractal(string type, int width, int height)
     {
         switch (type)
         {
             case "Mandelbrot":
-                return new MandelbrotSet(200, 100);
+                return new MandelbrotSet(width, height);
             case "Julia":
-                return new JuliaSet(200, 100);
+                return new JuliaSet(width, height);
+            case "Lya":
+                return new LyapunovFractal(width, height);
+            case "Colatz":
+                return new CollatzFractal(width,height);
+            case "Burn":
+                return new BurningShipFractal(width,height);
             case "Koch":
-                return new KochSnowflake(1);
+                return new MandelbrotSet(width, height);//new KochSnowflake(1); NOT IMPLEMENTED
             case "Sier":
-                return new SierpinskiTriangle(5);
+                return new MandelbrotSet(width, height); //new SierpinskiTriangle(5);  NOT IMPLEMENTED
             default:
                 throw new ArgumentException("Invalid fractal type");
         }

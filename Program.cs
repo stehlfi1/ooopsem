@@ -1,5 +1,4 @@
 ﻿//OONV PROJECT BY FILIP STEHLIK
-
 //Program.cs
 
 namespace ooopsem
@@ -9,7 +8,7 @@ namespace ooopsem
         static void Main(string[] args)
         {   
             
-            Console.SetWindowSize(201, 105);
+            Console.SetWindowSize(Config.Instance.Width+1, Config.Instance.Height+5);
             FractalFactory factory = new FractalFactory();
             FractalWindow fractalWindow = new FractalWindow();
             fractalWindow.ConsoleMenu();

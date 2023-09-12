@@ -1,18 +1,25 @@
-
 //gui.cs
 using System;
 using Pastel;
+using System.Collections.Generic;
 
 namespace ooopsem;
-
 public class FractalWindow
 {
-    private const int WIDTH = 200;
-    private const int HEIGHT = 100;
-    private string[,] window = new string[WIDTH, HEIGHT];
+    private readonly int WIDTH;
+    private readonly int HEIGHT;
+    private string[,] window;
     private Fractalparams _currentParams = new Fractalparams();
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
     private string currentFractalType = "Mandelbrot"; // Initialize with default fractal
+    private FractalCommandInvoker invoker = new FractalCommandInvoker();
+
+    public FractalWindow()
+    {
+        WIDTH = Config.Instance.Width;
+        HEIGHT = Config.Instance.Height;
+        window = new string[WIDTH, HEIGHT];
+    }
 
     public void ConsoleMenu()
     {
@@ -22,6 +29,9 @@ public class FractalWindow
             Console.WriteLine("Fractal Console App");
             Console.WriteLine("1. Mandelbrot");
             Console.WriteLine("2. Julia");
+            Console.WriteLine("3. Lya");
+            Console.WriteLine("4. Colatz");
+            Console.WriteLine("5. Burningship");
             Console.WriteLine("Q. Quit");
 
             var input = Console.ReadKey();
@@ -36,6 +46,18 @@ public class FractalWindow
                     currentFractalType = "Julia";
                     DrawFractal();
                     break;
+                case '3':
+                    currentFractalType = "Lya";
+                    DrawFractal();
+                    break;
+                case '4':
+                    currentFractalType = "Colatz";
+                    DrawFractal();
+                    break;
+                case '5':
+                    currentFractalType = "Burn";
+                    DrawFractal();
+                    break;
                 case 'Q':
                 case 'q':
                     return;
@@ -46,23 +68,19 @@ public class FractalWindow
     public void DrawFractal()
     {
         var fractalFactory = new FractalFactory();
-        var fractalDrawingStrategy = new FractalDrawingStrategy(_currentParams);
-
-        fractalDrawingStrategy.SetFractal(fractalFactory.CreateFractal(currentFractalType));
-        fractalDrawingStrategy.DrawFractal(window);
-
-        if (currentFractalType == "Julia"){fractalDrawingStrategy.UpdateParams(-1, 1, -1.2, 1.2, _currentParams);}
+        IFractal currentFractal = fractalFactory.CreateFractal(currentFractalType, WIDTH, HEIGHT);
+        _currentParams = currentFractal.GetDefaultParams();
+        currentFractal.Draw(window, _currentParams);
 
         ConsoleKeyInfo keyInfo;
         bool exit = false;
-        while (!exit) // Keep this loop for continuous interaction
+
+        while (!exit)
         {
             RenderWindow();
-
             keyInfo = Console.ReadKey(true);
             ICommand? command = null;
-            string currentFractalType = "Mandelbrot";
-
+            string currentFractalType ="Generic";
             switch (keyInfo.Key)
             {
                 case ConsoleKey.Q:
@@ -80,29 +98,26 @@ public class FractalWindow
                 case ConsoleKey.A:
                     command = FractalCommandFactory.CreateCommand("MoveRight", currentFractalType, _currentParams);
                     break;
-                case ConsoleKey.Z: // Zoom In
-                    command = new ZoomInCommand(_currentParams);
+                case ConsoleKey.Z:
+                    command = FractalCommandFactory.CreateCommand("ZoomIn", currentFractalType, _currentParams);
                     break;
-                case ConsoleKey.X: // Zoom Out
-                    command = new ZoomOutCommand(_currentParams);
+                case ConsoleKey.X:
+                    command = FractalCommandFactory.CreateCommand("ZoomOut", currentFractalType, _currentParams);
                     break;
-                case ConsoleKey.U:  // Undo the last action
-                    if (commandHistory.Count > 0)
-                    {
-                        var lastCommand = commandHistory.Pop();
-                        lastCommand.Undo();
-                        fractalDrawingStrategy.DrawFractal(window);
-                        command = null;
-                    }
+                case ConsoleKey.U:
+                    invoker.Undo(1);
+                    currentFractal.Draw(window, _currentParams);
                     break;
-                    // Add additional commands if needed
+                case ConsoleKey.R:
+                    invoker.Redo(1);
+                    currentFractal.Draw(window, _currentParams);
+                    break;
             }
-            
+
             if (command != null)
             {
-                command.Execute();
-                commandHistory.Push(command);
-                fractalDrawingStrategy.DrawFractal(window);  // Redraw the fractal with updated _currentParams
+                invoker.Execute(command);
+                currentFractal.Draw(window, _currentParams);
             }
         }
     }
@@ -119,5 +134,17 @@ public class FractalWindow
             Console.WriteLine();
         }
     }
+     public void UpdateParams(double reStart, double reEnd, double imStart, double imEnd, Fractalparams currentParams)
+    {
+        currentParams.RE_START = reStart;
+        currentParams.RE_END = reEnd;
+        currentParams.IM_START = imStart;
+        currentParams.IM_END = imEnd;
+    }
 }
+
+
+   
+
+
 

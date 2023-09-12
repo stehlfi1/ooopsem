@@ -5,7 +5,7 @@ public static class FractalCommandFactory
 {
     public static ICommand CreateCommand(string action, string fractalType, Fractalparams fractalparams)
     {
-        if (fractalType == "Mandelbrot")
+        if (fractalType == "Generic")
         {
             switch (action)
             {
@@ -17,6 +17,10 @@ public static class FractalCommandFactory
                     return new MoveLeftMandelbrotCommand(fractalparams);
                 case "MoveRight":
                     return new MoveRightMandelbrotCommand(fractalparams);
+                case "ZoomIn":
+                    return new ZoomInCommand(fractalparams);
+                case "ZoomOut":
+                    return new ZoomOutCommand(fractalparams);
                 default:
                     throw new Exception("Unknown command");
             }

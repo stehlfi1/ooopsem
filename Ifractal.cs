@@ -1,6 +1,8 @@
-namespace ooopsem;
-    
-public interface IFractal
+namespace ooopsem
 {
-    void Draw(string[,] window, Fractalparams currentParams);
+    public interface IFractal
+    {
+        void Draw(string[,] window, Fractalparams currentParams);
+        Fractalparams GetDefaultParams();
+    }
 }

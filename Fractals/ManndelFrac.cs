@@ -13,7 +13,10 @@ public class MandelbrotSet : IFractal
         this.width = width;
         this.height = height;
     }
-
+    public Fractalparams GetDefaultParams()
+    {
+        return new Fractalparams { RE_START = -2, RE_END = 1, IM_START = -1, IM_END = 1 };
+    }
     // MandelbrotSet changes
     public void Draw(string[,] window, Fractalparams currentParams)
     {
